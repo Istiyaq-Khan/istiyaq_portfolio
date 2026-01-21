@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
@@ -17,6 +18,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Istiyaq | Video Editor & Automation Engineer",
   description: "Portfolio of Istiyaq - Video Editing, Motion Graphics, and Automation Systems.",
+  verification: {
+    google: "r7320kg3zhgfCc-dBs17Z5HYl2vblzN0-f5aIWVVp7M",
+  },
 };
 
 export default function RootLayout({
