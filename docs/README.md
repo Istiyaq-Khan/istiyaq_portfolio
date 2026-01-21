@@ -1,2 +1,0 @@
-# istiyaq_portfolio
-

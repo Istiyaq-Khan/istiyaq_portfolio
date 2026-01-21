@@ -64,7 +64,15 @@ export default function AdminProjectsPage() {
                         </div>
                         <h3 className="text-xl font-bold mb-2">No projects yet</h3>
                         <p className="text-foreground/50 mb-6">Start by adding your first portfolio item.</p>
-                        <Button href="/admin/projects/new" variant="outline">Create Initial Project</Button>
+                        <div className="flex gap-4 justify-center">
+                            <Button href="/admin/projects/new" variant="outline">Create Initial Project</Button>
+                            <Button onClick={async () => {
+                                await fetch('/api/projects?seed=true');
+                                fetchProjects();
+                            }}>
+                                Seed Demo Project
+                            </Button>
+                        </div>
                     </div>
                 ) : (
                     projects.map((project) => (
