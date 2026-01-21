@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Istiyaq | Video Editor & Automation Engineer",
-  description: "Portfolio of Istiyaq - Video Editing, Motion Graphics, and Automation Systems.",
+  description: "Portfolio of Istiyaq Khan Razin - Video Editing, Motion Graphics, and Automation Systems.",
   verification: {
     google: "r7320kg3zhgfCc-dBs17Z5HYl2vblzN0-f5aIWVVp7M",
   },

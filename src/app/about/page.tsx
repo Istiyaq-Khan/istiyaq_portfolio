@@ -11,12 +11,15 @@ export default function AboutPage() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Person',
-        name: 'Istiyaq Khan',
+        name: 'Istiyaq Khan Razin',
         jobTitle: 'Founder & Automation Engineer',
-        url: 'https://istiyaq.com/about',
+        url: 'https://istiyaq.vercel.app/about',
         sameAs: [
-            'https://www.linkedin.com/in/istiyaqkhan', // Replace with actual
-            'https://www.youtube.com/@istiyaqkhan' // Replace with actual
+            'https://github.com/Istiyaq-Khan',
+            'https://www.linkedin.com/in/istiyaq-khan',
+            'https://www.instagram.com/ist.iyaqkhan',
+            'https://www.youtube.com/@istiyaq-khan10',
+            'https://x.com/istiyaqkhanr'
         ],
         knowsAbout: ['Video Editing', 'Motion Graphics', 'Python', 'n8n', 'Automation', 'YouTube Growth'],
         description: 'A Sylhet-based professional positioning himself at the intersection of creative media and technical automation.'
@@ -35,8 +38,8 @@ export default function AboutPage() {
                     {/* Placeholder for real image */}
                     <div className="aspect-[4/5] bg-card-bg border border-border rounded-xl overflow-hidden relative group">
                         <Image
-                            src="/me.png"
-                            alt="Istiyaq Khan - Creative Technologist"
+                            src="/Istiyaq-Khan-Razin.png"
+                            alt="Istiyaq Khan Razin - Creative Technologist"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             priority
@@ -79,7 +82,7 @@ export default function AboutPage() {
                         <div className="relative">
                             <span className="absolute -left-[39px] top-1 w-5 h-5 bg-background border-2 border-primary rounded-full" />
                             <h3 className="text-xl font-bold">Founder</h3>
-                            <p className="text-primary font-mono text-sm mb-2">IKK Studio • Dec 2024 - Present</p>
+                            <p className="text-primary font-mono text-sm mb-2">IKK Studio • Dec 2025 - Present</p>
                             <p className="text-foreground/70">
                                 Specialized agency focused on AI Workflow & Content Systems.
                                 Helping "solopreneurs" scale through automated content pipelines.
@@ -90,7 +93,7 @@ export default function AboutPage() {
                         <div className="relative">
                             <span className="absolute -left-[39px] top-1 w-5 h-5 bg-background border-2 border-border rounded-full" />
                             <h3 className="text-xl font-bold">Freelance Designer & Editor</h3>
-                            <p className="text-foreground/50 font-mono text-sm mb-2">Self-Employed • Feb 2024 - Dec 2024</p>
+                            <p className="text-foreground/50 font-mono text-sm mb-2">Self-Employed • Feb 2024 - Present</p>
                             <p className="text-foreground/70">
                                 Delivered high-retention video edits and motion graphics for diverse clients.
                                 Mastered Adobe Creative Suite (After Effects, Photoshop).

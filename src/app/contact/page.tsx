@@ -24,11 +24,11 @@ export default function ContactPage() {
                     </p>
 
                     <div className="space-y-6">
-                        <a href="mailto:hello@istiyaq.com" className="flex items-center gap-4 text-xl font-medium hover:text-primary transition-colors">
+                        <a href="mailto:istiyaqkhanrazin14@gmail.com" className="flex items-center gap-4 text-xl font-medium hover:text-primary transition-colors">
                             <div className="p-3 bg-white/5 rounded-full">
                                 <Mail className="text-secondary" size={24} />
                             </div>
-                            hello@istiyaq.com
+                            istiyaqkhanrazin14@gmail.com
                         </a>
 
                         <div className="flex items-center gap-4 text-xl font-medium text-foreground/80">
