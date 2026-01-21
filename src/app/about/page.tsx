@@ -34,10 +34,13 @@ export default function AboutPage() {
                 <div className="w-full md:w-1/2">
                     {/* Placeholder for real image */}
                     <div className="aspect-[4/5] bg-card-bg border border-border rounded-xl overflow-hidden relative group">
-                        <div className="absolute inset-0 flex items-center justify-center text-foreground/20 font-mono">
-                            [Istiyaq Portrait]
-                        </div>
-                        {/* <Image src="/me.jpg" alt="Istiyaq Khan" fill className="object-cover" /> */}
+                        <Image
+                            src="/me.png"
+                            alt="Istiyaq Khan - Creative Technologist"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            priority
+                        />
                     </div>
                 </div>
 

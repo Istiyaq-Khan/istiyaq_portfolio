@@ -8,6 +8,8 @@ const navItems = [
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { label: 'All Projects', href: '/admin/projects', icon: Video },
     { label: 'New Project', href: '/admin/projects/new', icon: PlusSquare },
+    { label: 'All Services', href: '/admin/services', icon: PlusSquare },
+    { label: 'New Service', href: '/admin/services/new', icon: PlusSquare },
 ];
 
 export default function AdminSidebar() {

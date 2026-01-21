@@ -1,41 +1,37 @@
+
 import Card from '@/components/Card';
 import Button from '@/components/Button';
-import { Video, PenTool, Youtube, Cpu, Check } from 'lucide-react';
+import { Video, PenTool, Youtube, Cpu, Check, Box } from 'lucide-react';
 import { Metadata } from 'next';
+import connectToDatabase from '@/lib/db';
+import ServiceModel from '@/models/Service'; // Renamed to avoid naming conflict
 
 export const metadata: Metadata = {
     title: 'Services | Istiyaq - Video Editing & Automation',
     description: 'Specialized video editing services for short-form, long-form, and motion graphics, plus automation systems for creators.',
 };
 
-const services = [
-    {
-        icon: <Video className="text-primary" size={40} />,
-        title: 'Short-Form Video Editing',
-        description: 'Maximize retention on Instagram Reels, TikTok, and YouTube Shorts. I focus on pacing, hooks, and sound design to keep viewers watching.',
-        features: ['Hook optimization', 'Dynamic captions', 'Sound design & mixing', 'fast delivery']
-    },
-    {
-        icon: <PenTool className="text-secondary" size={40} />,
-        title: 'Motion Graphics',
-        description: 'Elevate your brand with custom animations. From logo reveals to complex title sequences that explain your concepts visually.',
-        features: ['Logo animation', 'Explainer graphics', 'Lower thirds', 'Custom transitions']
-    },
-    {
-        icon: <Youtube className="text-red-500" size={40} />,
-        title: 'YouTube Long-Form',
-        description: 'Storytelling-driven editing for long-form content. I maintain the flow while removing fluff to increase Average View Duration (AVD).',
-        features: ['Narrative structure', 'B-roll sourcing', 'Color grading', 'Thumbnail consultation']
-    },
-    {
-        icon: <Cpu className="text-blue-400" size={40} />,
-        title: 'Content Systems',
-        description: 'I help you organize your production workflow so you can focus on filming while I handle the post-production pipeline.',
-        features: ['File management', 'Template creation', 'Workflow automation', 'Strategy calls']
-    },
-];
+export const revalidate = 60;
 
-export default function ServicesPage() {
+// Icon mapping
+const iconMap: any = {
+    Video: <Video className="text-primary" size={40} />,
+    PenTool: <PenTool className="text-secondary" size={40} />,
+    Youtube: <Youtube className="text-red-500" size={40} />,
+    Cpu: <Cpu className="text-blue-400" size={40} />,
+};
+
+async function getServices() {
+    await connectToDatabase();
+    // Auto-seed handled in API, but for direct DB call we just fetch.
+    // If empty, we might want to trigger the seed or just return empty.
+    const services = await ServiceModel.find({}).sort({ order: 1 });
+    return services;
+}
+
+export default async function ServicesPage() {
+    const services = await getServices();
+
     return (
         <div className="container mx-auto px-6 py-12">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -46,17 +42,17 @@ export default function ServicesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-                {services.map((service, index) => (
-                    <Card key={index} className="flex flex-col h-full border-white/5 bg-white/5 hover:bg-white/10 transition-colors">
+                {services.map((service: any) => (
+                    <Card key={service._id} className="flex flex-col h-full border-white/5 bg-white/5 hover:bg-white/10 transition-colors">
                         <div className="mb-6 p-4 bg-background rounded-xl w-fit border border-white/10">
-                            {service.icon}
+                            {iconMap[service.icon] || <Box size={40} className="text-primary" />}
                         </div>
                         <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
                         <p className="text-foreground/70 mb-8 leading-relaxed">
                             {service.description}
                         </p>
                         <ul className="space-y-3 mt-auto mb-8">
-                            {service.features.map((feature, i) => (
+                            {service.features.map((feature: string, i: number) => (
                                 <li key={i} className="flex items-center gap-3 text-sm font-medium">
                                     <Check className="text-primary" size={16} />
                                     {feature}

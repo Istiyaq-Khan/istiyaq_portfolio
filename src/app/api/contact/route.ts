@@ -15,6 +15,20 @@ export async function POST(req: Request) {
 
         await connectToDatabase();
 
+        // Rate Limit / Spam Check
+        const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+        const recentSubmission = await ContactSubmission.findOne({
+            email,
+            createdAt: { $gt: fiveMinutesAgo }
+        });
+
+        if (recentSubmission) {
+            return NextResponse.json(
+                { error: 'Too many requests. Please wait 5 minutes.' },
+                { status: 429 }
+            );
+        }
+
         const submission = await ContactSubmission.create({
             name,
             email,
