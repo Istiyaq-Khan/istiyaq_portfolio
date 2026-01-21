@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased bg-background text-foreground`}
+        className={`${playfair.variable} ${inter.variable} antialiased text-foreground`}
       >
         <Navbar />
         <main className="min-h-screen pt-20">

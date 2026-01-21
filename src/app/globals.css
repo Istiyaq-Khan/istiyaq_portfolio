@@ -1,27 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors - The Creative Glitch */
-  --background: #111111;
+  /* The Creative Glitch Palette */
+  --bg-main: #111111;
   /* Matte Black */
   --foreground: #ededed;
+  /* Off-white Body Text */
 
-  /* Accents */
-  --primary: #8B5CF6;
-  /* Neon Purple */
-  --secondary: #A3E635;
-  /* Acid Green */
+  --accent-primary: #8B5CF6;
+  /* Neon Purple (Links, Focus, Icons) */
+  --accent-cta: #A3E635;
+  /* Acid Green (Buttons, Actions) */
 
-  /* Semantic Colors */
+  /* Semantic Mappings */
   --card-bg: #1A1A1A;
   --border: #333333;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--bg-main);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
+
+  /* Tailwind Colors */
+  --color-primary: var(--accent-primary);
+  /* Purple */
+  --color-cta: var(--accent-cta);
+  /* Green */
   --color-card: var(--card-bg);
   --color-border: var(--border);
 
@@ -29,8 +33,10 @@
   --font-sans: var(--font-inter);
 }
 
+
+html,
 body {
-  background: var(--background);
+  background-color: var(--bg-main);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;

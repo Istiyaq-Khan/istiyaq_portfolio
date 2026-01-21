@@ -21,10 +21,10 @@ export default function Button({
     ...props
 }: ButtonProps) {
     const variants = {
-        primary: 'bg-primary text-white hover:opacity-90',
-        secondary: 'bg-secondary text-black hover:opacity-90',
-        outline: 'border border-border text-foreground hover:bg-white/5',
-        ghost: 'text-foreground/80 hover:text-primary hover:bg-white/5',
+        primary: 'bg-cta text-black font-bold hover:opacity-90 shadow-[0_0_15px_rgba(163,230,53,0.3)] hover:shadow-[0_0_25px_rgba(163,230,53,0.5)] border border-transparent', // Acid Green
+        secondary: 'bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20', // Purple Tint
+        outline: 'border border-border text-foreground hover:border-primary hover:text-primary bg-transparent',
+        ghost: 'text-foreground/70 hover:text-primary hover:bg-white/5',
     };
 
     const sizes = {
