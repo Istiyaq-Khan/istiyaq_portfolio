@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/admin/',
         },
-        sitemap: 'https://istiyaq.com/sitemap.xml',
+        sitemap: 'https://istiyaq.vercel.app/sitemap.xml',
     };
 }
