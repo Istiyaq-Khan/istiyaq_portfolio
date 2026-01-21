@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
+import RichTextEditor from '@/components/RichTextEditor';
 
 interface ProjectFormProps {
     initialData?: any;
@@ -110,7 +111,10 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
 
             <div>
                 <label className="block text-sm font-medium mb-2">Description</label>
-                <textarea name="description" value={formData.description} onChange={handleChange} required rows={4} className="w-full bg-background border border-border rounded px-3 py-2" />
+                <RichTextEditor
+                    value={formData.description}
+                    onChange={(content) => setFormData({ ...formData, description: content })}
+                />
             </div>
 
             <div>
