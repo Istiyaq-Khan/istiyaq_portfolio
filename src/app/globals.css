@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors */
-  --background: #0a0a0a;
+  /* Colors - The Creative Glitch */
+  --background: #111111;
+  /* Matte Black */
   --foreground: #ededed;
-  
+
   /* Accents */
-  --primary: #3b82f6; /* Electric Blue */
-  --secondary: #f59e0b; /* Amber/Gold */
-  
+  --primary: #8B5CF6;
+  /* Neon Purple */
+  --secondary: #A3E635;
+  /* Acid Green */
+
   /* Semantic Colors */
-  --card-bg: #171717;
-  --border: #262626;
+  --card-bg: #1A1A1A;
+  --border: #333333;
 }
 
 @theme inline {
@@ -21,7 +24,7 @@
   --color-secondary: var(--secondary);
   --color-card: var(--card-bg);
   --color-border: var(--border);
-  
+
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
@@ -33,6 +36,11 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-playfair), serif;
 }

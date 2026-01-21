@@ -4,6 +4,7 @@ export interface IProject extends Document {
     title: string;
     slug: string;
     category: 'Short-Form' | 'Motion Graphics' | 'YouTube' | 'Automation';
+    projectType: 'Personal' | 'Practice' | 'Client';
     thumbnailUrl: string;
     videoUrl?: string; // For detail page
     description: string;
@@ -20,6 +21,12 @@ const ProjectSchema: Schema = new Schema({
         type: String,
         required: true,
         enum: ['Short-Form', 'Motion Graphics', 'YouTube', 'Automation']
+    },
+    projectType: {
+        type: String,
+        required: true,
+        enum: ['Personal', 'Practice', 'Client'],
+        default: 'Personal'
     },
     thumbnailUrl: { type: String, required: true },
     videoUrl: { type: String },

@@ -1,66 +1,141 @@
-import Image from 'next/image';
+import { Metadata } from 'next';
 import Button from '@/components/Button';
+import Image from 'next/image';
+
+export const metadata: Metadata = {
+    title: 'About Istiyaq | Video Editor & Automation Engineer',
+    description: 'Founder of IKK Studio. I bridge the gap between creative storytelling and technical automation for YouTubers and brands.',
+};
 
 export default function AboutPage() {
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Istiyaq Khan',
+        jobTitle: 'Founder & Automation Engineer',
+        url: 'https://istiyaq.com/about',
+        sameAs: [
+            'https://www.linkedin.com/in/istiyaqkhan', // Replace with actual
+            'https://www.youtube.com/@istiyaqkhan' // Replace with actual
+        ],
+        knowsAbout: ['Video Editing', 'Motion Graphics', 'Python', 'n8n', 'Automation', 'YouTube Growth'],
+        description: 'A Sylhet-based professional positioning himself at the intersection of creative media and technical automation.'
+    };
+
     return (
         <div className="container mx-auto px-6 py-12">
-            {/* Intro Section */}
-            <div className="flex flex-col md:flex-row gap-12 items-center mb-24">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+
+            {/* Hero / Intro */}
+            <section className="mb-24 flex flex-col md:flex-row gap-12 items-center">
                 <div className="w-full md:w-1/2">
-                    <div className="aspect-[4/5] relative rounded-lg overflow-hidden border border-white/10 bg-white/5">
-                        <div className="absolute inset-0 flex items-center justify-center text-foreground/20">
-                            {/* Replace with actual image later */}
-                            [Your Image Here]
+                    {/* Placeholder for real image */}
+                    <div className="aspect-[4/5] bg-card-bg border border-border rounded-xl overflow-hidden relative group">
+                        <div className="absolute inset-0 flex items-center justify-center text-foreground/20 font-mono">
+                            [Istiyaq Portrait]
                         </div>
-                        {/* <Image src="/path/to/image.jpg" fill alt="Istiyaq" className="object-cover" /> */}
+                        {/* <Image src="/me.jpg" alt="Istiyaq Khan" fill className="object-cover" /> */}
                     </div>
                 </div>
 
                 <div className="w-full md:w-1/2">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">More than just an Editor.</h1>
-                    <p className="text-xl text-foreground/80 leading-relaxed mb-6">
-                        I'm a video editor and creative strategist who helps creators & brands build authority through consistent, high-quality content.
-                    </p>
-                    <p className="text-foreground/70 leading-relaxed mb-8">
-                        My journey started with a love for storytelling. Over time, I realized that great edits aren't enough—you need systems to scale. That's why I'm currently expanding my skillset into <strong>automation and workflow engineering</strong> to provide even more value to my clients.
-                    </p>
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        The <span className="text-primary">Creative</span> meets <br />
+                        The <span className="text-secondary">Engineer</span>.
+                    </h1>
 
-                    <div className="flex gap-4">
-                        <Button href="/contact">Work With Me</Button>
-                        <Button variant="outline" href="/work">See My Edits</Button>
+                    <div className="space-y-4 text-lg text-foreground/80 leading-relaxed mb-8">
+                        <p>
+                            I am <strong>Istiyaq Khan</strong>, a Sylhet-based creative technologist and Founder of <strong>IKK Studio</strong>.
+                        </p>
+                        <p>
+                            My mission is simple: <strong>Solve efficiency problems for creators.</strong>
+                        </p>
+                        <p>
+                            I don't just edit videos; I build the <em>systems</em> that scale them. By combining motion graphics with Python and n8n automations, I help YouTubers and brands repurpose content, manage workflows, and grow without burnout.
+                        </p>
+                    </div>
+
+                    <Button href="/contact">Let's Build Systems</Button>
+                </div>
+            </section>
+
+            {/* Experience & Vision */}
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
+                <div>
+                    <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                        <span className="w-2 h-8 bg-primary rounded-full" />
+                        Experience
+                    </h2>
+
+                    <div className="space-y-8 border-l border-border pl-8 relative">
+                        {/* Timeline Item 1 */}
+                        <div className="relative">
+                            <span className="absolute -left-[39px] top-1 w-5 h-5 bg-background border-2 border-primary rounded-full" />
+                            <h3 className="text-xl font-bold">Founder</h3>
+                            <p className="text-primary font-mono text-sm mb-2">IKK Studio • Dec 2024 - Present</p>
+                            <p className="text-foreground/70">
+                                Specialized agency focused on AI Workflow & Content Systems.
+                                Helping "solopreneurs" scale through automated content pipelines.
+                            </p>
+                        </div>
+
+                        {/* Timeline Item 2 */}
+                        <div className="relative">
+                            <span className="absolute -left-[39px] top-1 w-5 h-5 bg-background border-2 border-border rounded-full" />
+                            <h3 className="text-xl font-bold">Freelance Designer & Editor</h3>
+                            <p className="text-foreground/50 font-mono text-sm mb-2">Self-Employed • Feb 2024 - Dec 2024</p>
+                            <p className="text-foreground/70">
+                                Delivered high-retention video edits and motion graphics for diverse clients.
+                                Mastered Adobe Creative Suite (After Effects, Photoshop).
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Beliefs / Core Values */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-                {[
-                    { title: "Clarity Over Flash", desc: "If the viewer is confused, you've lost them. I prioritize clear communication." },
-                    { title: "Consistency Is King", desc: "One viral video is luck. A system for posting quality content daily is a business." },
-                    { title: "Always Evolving", desc: "The digital landscape changes fast. I stay ahead by learning new tools like automation." }
-                ].map((item, i) => (
-                    <div key={i} className="p-6 border-l-2 border-primary bg-white/5">
-                        <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                        <p className="text-foreground/70">{item.desc}</p>
+                <div>
+                    <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                        <span className="w-2 h-8 bg-secondary rounded-full" />
+                        The Vision
+                    </h2>
+                    <div className="bg-card-bg border border-border p-8 rounded-xl h-full">
+                        <p className="text-xl font-medium mb-6 leading-relaxed">
+                            "I am not just editing videos; I am building the systems that edit videos."
+                        </p>
+                        <p className="text-foreground/70 mb-6">
+                            My transition from individual execution to <strong>system architecture</strong> is driven by a desire to productize creativity.
+                        </p>
+                        <p className="text-foreground/70">
+                            Future Focus: <strong>AI Agents, Marketing Automation, and High-Volume Content Pipelines.</strong>
+                        </p>
                     </div>
-                ))}
-            </div>
+                </div>
+            </section>
 
-            {/* Skills Grid */}
-            <div className="mb-12">
-                <h2 className="text-3xl font-bold mb-8 text-center">Tools & Tech Stack</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Skills Editorial Grid */}
+            <section>
+                <h2 className="text-3xl font-bold mb-10 text-center">Tech Stack & Tools</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
                     {[
-                        'Premiere Pro', 'After Effects', 'Photoshop', 'DaVinci Resolve',
-                        'Next.js', 'React', 'Tailwind CSS', 'n8n (Learning)',
-                        'Python (Basics)', 'Notion', 'Figma', 'OpenAI API'
-                    ].map((skill) => (
-                        <div key={skill} className="bg-card-bg border border-border p-4 rounded text-center font-medium hover:border-primary/50 transition-colors">
-                            {skill}
+                        { cat: "Creative", tool: "After Effects" },
+                        { cat: "Creative", tool: "Premiere Pro" },
+                        { cat: "Creative", tool: "Photoshop" },
+                        { cat: "Creative", tool: "DaVinci Resolve" },
+                        { cat: "Automation", tool: "n8n" },
+                        { cat: "Automation", tool: "Python" },
+                        { cat: "Automation", tool: "OpenAI API" },
+                        { cat: "Web", tool: "Next.js" },
+                    ].map((item, idx) => (
+                        <div key={idx} className="bg-background p-8 hover:bg-white/5 transition-colors group">
+                            <span className="block text-xs text-foreground/40 mb-2 uppercase tracking-widest">{item.cat}</span>
+                            <span className="block text-xl font-bold group-hover:text-primary transition-colors">{item.tool}</span>
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
         </div>
     );
 }
