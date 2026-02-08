@@ -3,8 +3,26 @@ import ContactForm from '@/components/ContactForm';
 import { Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Contact | Istiyaq Khan - Let\'s Work Together',
-    description: 'Get in touch for video editing, motion graphics, or automation consulting. I usually respond within 24 hours.',
+    title: 'Contact Istiyaq Khan | Hire for Video Editing & AI Automation Projects',
+    description: 'Get in touch with Istiyaq Khan for video editing, motion graphics, or AI workflow automation services. Based in Sylhet, Bangladesh. Response within 24 hours.',
+    keywords: [
+        'hire video editor',
+        'contact Istiyaq Khan',
+        'video editing services Sylhet',
+        'AI automation consultant',
+        'hire motion graphics designer',
+        'YouTube automation services',
+        'content automation hire',
+    ],
+    openGraph: {
+        title: 'Contact Istiyaq Khan | Hire for Video Editing & AI Automation',
+        description: 'Get in touch for video editing, motion graphics, or AI workflow automation services.',
+        url: 'https://istiyaq.vercel.app/contact',
+        type: 'website',
+    },
+    alternates: {
+        canonical: '/contact',
+    },
 };
 
 export default function ContactPage() {

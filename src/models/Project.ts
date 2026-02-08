@@ -11,7 +11,12 @@ export interface IProject extends Document {
     skills: string[]; // e.g., ["Pacing", "Sound Design"]
     tools: string[]; // e.g., ["After Effects", "Premiere"]
     featured: boolean;
+    // SEO fields
+    metaTitle?: string; // Custom SEO title (defaults to title)
+    metaDescription?: string; // Custom SEO description
+    keywords?: string[]; // SEO keywords for this project
     createdAt: Date;
+    updatedAt: Date;
 }
 
 const ProjectSchema: Schema = new Schema({
@@ -34,6 +39,10 @@ const ProjectSchema: Schema = new Schema({
     skills: [{ type: String }],
     tools: [{ type: String }],
     featured: { type: Boolean, default: false },
+    // SEO fields
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+    keywords: [{ type: String }],
 }, { timestamps: true });
 
 export default mongoose.models.Project || mongoose.model<IProject>('Project', ProjectSchema);

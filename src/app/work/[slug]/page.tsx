@@ -3,12 +3,15 @@ import Button from '@/components/Button';
 import { ArrowLeft, Check } from 'lucide-react';
 import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
+import { Metadata } from 'next';
+import { truncateDescription } from '@/lib/seo-utils';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
 interface IProject {
+    _id?: string;
     title: string;
     category: string;
     description: string;
@@ -17,6 +20,65 @@ interface IProject {
     challenges?: string[];
     tools: string[];
     skills: string[];
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string[];
+    slug: string;
+}
+
+// Generate dynamic metadata for SEO
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+
+    await connectToDatabase();
+    const project = await Project.findOne({ slug }).lean() as unknown as IProject;
+
+    if (!project) {
+        return {
+            title: 'Project Not Found | Istiyaq Khan',
+            description: 'The requested project could not be found.',
+        };
+    }
+
+    const title = project.metaTitle || `${project.title} | Istiyaq Khan Portfolio`;
+    const description = project.metaDescription || truncateDescription(project.description, 160);
+    const keywords = project.keywords || [
+        project.title,
+        project.category,
+        ...project.tools,
+        ...project.skills,
+        'Istiyaq Khan',
+        'portfolio'
+    ];
+
+    return {
+        title,
+        description,
+        keywords,
+        openGraph: {
+            title,
+            description,
+            type: 'article',
+            url: `https://istiyaq.vercel.app/work/${slug}`,
+            images: [
+                {
+                    url: project.thumbnailUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: project.title,
+                }
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [project.thumbnailUrl],
+        },
+        alternates: {
+            canonical: `/work/${slug}`,
+        },
+    };
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {

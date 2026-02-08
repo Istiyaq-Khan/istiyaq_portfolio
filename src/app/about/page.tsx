@@ -3,8 +3,28 @@ import Button from '@/components/Button';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-    title: 'About Istiyaq | Video Editor & Automation Engineer',
-    description: 'Founder of IKK Studio. I bridge the gap between creative storytelling and technical automation for YouTubers and brands.',
+    title: 'About Istiyaq Khan Razin | AI Workflow Engineer & IKK Studio Founder',
+    description: 'Learn about Istiyaq Khan Razin, a Sylhet-based creative technologist bridging video editing and AI automation. Founder of IKK Studio specializing in content systems for YouTubers and creators.',
+    keywords: [
+        'Istiyaq Khan bio',
+        'IKK Studio founder',
+        'AI automation engineer',
+        'content creator tools',
+        'Sylhet technology',
+        'video editor biography',
+        'Python automation expert',
+        'n8n specialist',
+        'creator systems',
+    ],
+    openGraph: {
+        title: 'About Istiyaq Khan Razin | AI Workflow Engineer & IKK Studio Founder',
+        description: 'Sylhet-based creative technologist bridging video editing and AI automation. Founder of IKK Studio.',
+        url: 'https://istiyaq.vercel.app/about',
+        type: 'profile',
+    },
+    alternates: {
+        canonical: '/about',
+    },
 };
 
 export default function AboutPage() {

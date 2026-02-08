@@ -7,8 +7,30 @@ import connectToDatabase from '@/lib/db';
 import ServiceModel from '@/models/Service'; // Renamed to avoid naming conflict
 
 export const metadata: Metadata = {
-    title: 'Services | Istiyaq - Video Editing & Automation',
-    description: 'Specialized video editing services for short-form, long-form, and motion graphics, plus automation systems for creators.',
+    title: 'Services | Video Editing, AI Automation & Workflow Systems by Istiyaq Khan',
+    description: 'Professional video editing, motion graphics, YouTube automation, and AI-powered content pipelines. Custom automation systems for creators and solopreneurs in Sylhet, Bangladesh.',
+    keywords: [
+        'video editing services',
+        'AI workflow automation',
+        'YouTube automation services',
+        'content pipeline development',
+        'n8n automation',
+        'motion graphics services',
+        'short-form video editing',
+        'long-form content editing',
+        'automated content systems',
+        'creator automation tools',
+        'video editing Sylhet',
+    ],
+    openGraph: {
+        title: 'Services | Video Editing, AI Automation & Workflow Systems',
+        description: 'Professional video editing, motion graphics, and AI-powered content automation systems.',
+        url: 'https://istiyaq.vercel.app/services',
+        type: 'website',
+    },
+    alternates: {
+        canonical: '/services',
+    },
 };
 
 export const revalidate = 60;

@@ -1,9 +1,16 @@
 import { MetadataRoute } from 'next';
+import connectToDatabase from '@/lib/db';
+import Project from '@/models/Project';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://istiyaq.vercel.app';
 
-    return [
+    // Fetch all projects from database
+    await connectToDatabase();
+    const projects = await Project.find({}).select('slug updatedAt').lean();
+
+    // Static pages
+    const staticPages: MetadataRoute.Sitemap = [
         {
             url: baseUrl,
             lastModified: new Date(),
@@ -35,4 +42,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.5,
         },
     ];
+
+    // Dynamic project pages
+    const projectPages: MetadataRoute.Sitemap = projects.map((project: any) => ({
+        url: `${baseUrl}/work/${project.slug}`,
+        lastModified: project.updatedAt || new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }));
+
+    return [...staticPages, ...projectPages];
 }

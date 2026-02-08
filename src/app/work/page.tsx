@@ -5,8 +5,27 @@ import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
 
 export const metadata: Metadata = {
-    title: 'Work | Istiyaq Khan - Portfolio',
-    description: 'Selected video editing and automation projects.',
+    title: 'Portfolio | Video Editing & Automation Projects by Istiyaq Khan',
+    description: 'Browse my portfolio of video editing, motion graphics, and AI automation projects. From short-form content to complete workflow systems for YouTubers and creators.',
+    keywords: [
+        'video editing portfolio',
+        'motion graphics showcase',
+        'automation projects',
+        'content creation examples',
+        'YouTube editing samples',
+        'short-form video portfolio',
+        'After Effects projects',
+        'creative portfolio',
+    ],
+    openGraph: {
+        title: 'Portfolio | Video Editing & Automation Projects',
+        description: 'Browse my portfolio of video editing, motion graphics, and AI automation projects.',
+        url: 'https://istiyaq.vercel.app/work',
+        type: 'website',
+    },
+    alternates: {
+        canonical: '/work',
+    },
 };
 
 export const revalidate = 60; // Revalidate every minute

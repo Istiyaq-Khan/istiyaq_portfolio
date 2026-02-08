@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react"
 import { LoadingScreen } from "@/components/loading-screen"
-import { CustomCursor } from "@/components/custom-cursor"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
@@ -21,11 +20,9 @@ export default function Page() {
   return (
     <>
       {!isLoaded && <LoadingScreen onComplete={handleLoadComplete} />}
-      <CustomCursor />
       <div
-        className={`transition-opacity duration-700 cursor-none ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"
+          }`}
       >
         <Navbar />
         <main>
