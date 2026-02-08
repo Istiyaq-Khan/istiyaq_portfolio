@@ -36,9 +36,9 @@ export default function WorkGallery({ initialProjects }: WorkGalleryProps) {
                     <button
                         key={category}
                         onClick={() => setFilter(category)}
-                        className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${filter === category
-                                ? 'bg-cta text-black shadow-[0_0_15px_rgba(163,230,53,0.3)]'
-                                : 'bg-white/5 hover:bg-white/10 text-foreground/70 hover:text-foreground'
+                        className={`px-5 py-2 rounded-full text-sm font-mono font-bold whitespace-nowrap transition-all duration-300 ${filter === category
+                            ? 'bg-cta text-black shadow-[0_0_15px_rgba(163,230,53,0.3)]'
+                            : 'bg-white/5 hover:bg-white/10 text-foreground/70 hover:text-foreground'
                             }`}
                     >
                         {category}
@@ -74,7 +74,7 @@ export default function WorkGallery({ initialProjects }: WorkGalleryProps) {
                                         {project.category}
                                     </span>
                                     {project.projectType && (
-                                        <span className="text-xs text-foreground/40 border border-white/10 px-2 py-1 rounded">
+                                        <span className="text-xs font-mono text-foreground/40 border border-white/10 px-2 py-1 rounded">
                                             {project.projectType}
                                         </span>
                                     )}
@@ -86,7 +86,7 @@ export default function WorkGallery({ initialProjects }: WorkGalleryProps) {
 
                                 <div className="flex gap-2 flex-wrap">
                                     {project.skills?.slice(0, 3).map((skill) => (
-                                        <span key={skill} className="text-xs text-foreground/50 border border-white/10 px-2 py-0.5 rounded-full">
+                                        <span key={skill} className="text-xs font-mono text-foreground/50 border border-white/10 px-2 py-0.5 rounded-full">
                                             {skill}
                                         </span>
                                     ))}

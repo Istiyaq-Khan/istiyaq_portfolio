@@ -1,20 +1,42 @@
-import Hero from '@/components/Hero';
-import ServicesSnapshot from '@/components/ServicesSnapshot';
-import WhyChooseMe from '@/components/WhyChooseMe';
+"use client"
 
-export default function Home() {
+import { useState, useCallback } from "react"
+import { LoadingScreen } from "@/components/loading-screen"
+import { CustomCursor } from "@/components/custom-cursor"
+import { Navbar } from "@/components/navbar"
+import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
+import { SkillsSection } from "@/components/skills-section"
+import { ProjectsSection } from "@/components/projects-section"
+import { ContactSection } from "@/components/contact-section"
+import { Footer } from "@/components/footer"
+
+export default function Page() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const handleLoadComplete = useCallback(() => {
+    setIsLoaded(true)
+  }, [])
+
   return (
-    <div className="flex flex-col gap-0">
-      <Hero />
-      <ServicesSnapshot />
-      <WhyChooseMe />
-
-      {/* Future Note Section */}
-      <section className="py-16 px-6 container mx-auto text-center border-t border-white/5">
-        <p className="text-sm text-foreground/40 italic">
-          Currently focused on video editing. Automation services coming soon.
-        </p>
-      </section>
-    </div>
-  );
+    <>
+      {!isLoaded && <LoadingScreen onComplete={handleLoadComplete} />}
+      <CustomCursor />
+      <div
+        className={`transition-opacity duration-700 cursor-none ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Navbar />
+        <main>
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
+    </>
+  )
 }

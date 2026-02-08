@@ -29,17 +29,31 @@
   --color-card: var(--card-bg);
   --color-border: var(--border);
 
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
+  /* Font Families with Fallbacks */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Typography Settings */
+  --tracking-tight: -0.015em;
 }
 
+html {
+  font-family: var(--font-sans);
+}
 
-html,
 body {
   background-color: var(--bg-main);
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: inherit;
+  letter-spacing: var(--tracking-tight);
   overflow-x: hidden;
+}
+
+/* Ensure all elements inherit the font */
+*,
+::before,
+::after {
+  font-family: inherit;
 }
 
 h1,
@@ -48,5 +62,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+  /* Tight tracking for headings */
 }

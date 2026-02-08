@@ -33,7 +33,7 @@ export default function Button({
         lg: 'px-8 py-4 text-lg',
     };
 
-    const baseStyles = 'inline-flex items-center justify-center rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none';
+    const baseStyles = 'inline-flex items-center justify-center rounded-md font-mono font-medium tracking-tight transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none';
 
     const styles = cn(baseStyles, variants[variant], sizes[size], className);
 

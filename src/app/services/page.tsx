@@ -53,7 +53,7 @@ export default async function ServicesPage() {
                         </p>
                         <ul className="space-y-3 mt-auto mb-8">
                             {service.features.map((feature: string, i: number) => (
-                                <li key={i} className="flex items-center gap-3 text-sm font-medium">
+                                <li key={i} className="flex items-center gap-3 text-sm font-mono font-medium">
                                     <Check className="text-primary" size={16} />
                                     {feature}
                                 </li>

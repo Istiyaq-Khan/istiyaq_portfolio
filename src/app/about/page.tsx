@@ -136,8 +136,8 @@ export default function AboutPage() {
                         { cat: "Web", tool: "Next.js" },
                     ].map((item, idx) => (
                         <div key={idx} className="bg-background p-8 hover:bg-white/5 transition-colors group">
-                            <span className="block text-xs text-foreground/40 mb-2 uppercase tracking-widest">{item.cat}</span>
-                            <span className="block text-xl font-bold group-hover:text-primary transition-colors">{item.tool}</span>
+                            <span className="block text-xs font-mono text-foreground/40 mb-2 uppercase tracking-widest">{item.cat}</span>
+                            <span className="block text-xl font-mono font-bold group-hover:text-primary transition-colors">{item.tool}</span>
                         </div>
                     ))}
                 </div>

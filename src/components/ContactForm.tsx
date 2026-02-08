@@ -55,7 +55,7 @@ export default function ContactForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-5 bg-card-bg p-6 md:p-8 rounded-xl border border-border shadow-2xl">
             <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground/80">
+                <label htmlFor="name" className="block text-sm font-mono font-medium mb-2 text-foreground/80">
                     Name
                 </label>
                 <input
@@ -71,7 +71,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground/80">
+                <label htmlFor="email" className="block text-sm font-mono font-medium mb-2 text-foreground/80">
                     Email
                 </label>
                 <input
@@ -87,7 +87,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground/80">
+                <label htmlFor="message" className="block text-sm font-mono font-medium mb-2 text-foreground/80">
                     Project Details
                 </label>
                 <textarea
@@ -116,7 +116,7 @@ export default function ContactForm() {
                 </span>
             </Button>
 
-            <p className="text-xs text-center text-foreground/40 mt-4">
+            <p className="text-xs font-mono text-center text-foreground/40 mt-4">
                 I respect your privacy. No spam, ever.
             </p>
         </form>

@@ -24,14 +24,14 @@ export default function ContactPage() {
                     </p>
 
                     <div className="space-y-6">
-                        <a href="mailto:istiyaqkhanrazin14@gmail.com" className="flex items-center gap-4 text-xl font-medium hover:text-primary transition-colors">
+                        <a href="mailto:razinkhn3245@gmail.com" className="flex items-center gap-4 text-xl font-mono font-medium hover:text-primary transition-colors">
                             <div className="p-3 bg-white/5 rounded-full">
                                 <Mail className="text-secondary" size={24} />
                             </div>
-                            istiyaqkhanrazin14@gmail.com
+                            razinkhan3245@gmail.com
                         </a>
 
-                        <div className="flex items-center gap-4 text-xl font-medium text-foreground/80">
+                        <div className="flex items-center gap-4 text-xl font-mono font-medium text-foreground/80">
                             <div className="p-3 bg-white/5 rounded-full">
                                 <MapPin className="text-primary" size={24} />
                             </div>

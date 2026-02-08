@@ -39,7 +39,7 @@ export default function ServicesSnapshot() {
                 </div>
                 <Link
                     href="/services"
-                    className="group flex items-center gap-2 text-primary mt-4 md:mt-0 font-medium"
+                    className="group flex items-center gap-2 text-primary mt-4 md:mt-0 font-mono font-medium"
                 >
                     View All Services
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
