@@ -2,43 +2,49 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
-const projects = [
-    {
-        title: "AI Content Pipeline",
-        subtitle: "Automated Workflow System",
-        description:
-            "End-to-end automation pipeline that repurposes long-form YouTube content into optimized short-form clips, social media posts, and email sequences — all powered by AI.",
-        tags: ["Python", "n8n", "Generative AI", "Automation"],
-        image: "/images/project-ai-workflow.jpg",
-        color: "#8B5CF6",
-        index: "01",
-    },
-    {
-        title: "Content Distribution Engine",
-        subtitle: "Multi-Platform System",
-        description:
-            "A system architecture that takes a single content piece and automatically formats, optimizes, and schedules it across multiple platforms with platform-specific adjustments.",
-        tags: ["Content SEO", "API Integration", "Scheduling", "Analytics"],
-        image: "/images/project-content-system.jpg",
-        color: "#A3E635",
-        index: "02",
-    },
-    {
-        title: "Motion & Brand Design",
-        subtitle: "Visual Identity Systems",
-        description:
-            "Premium motion graphics, branding packages, and visual identity systems designed for creators and tech brands — combining cinematic quality with brand strategy.",
-        tags: ["After Effects", "Motion Graphics", "Branding", "Photoshop"],
-        image: "/images/project-motion-design.jpg",
-        color: "#8B5CF6",
-        index: "03",
-    },
-]
+interface Project {
+    _id: string;
+    title: string;
+    slug: string;
+    category: string;
+    description: string;
+    thumbnailUrl: string;
+    tools: string[];
+    featured: boolean;
+}
 
 export function ProjectsSection() {
     const sectionRef = useRef<HTMLElement>(null)
     const [isVisible, setIsVisible] = useState(false)
+    const [projects, setProjects] = useState<Project[]>([])
+    const [loading, setLoading] = useState(true)
+
+    // Fetch featured projects from API
+    useEffect(() => {
+        async function fetchFeaturedProjects() {
+            try {
+                console.log('Fetching featured projects...')
+                const response = await fetch('/api/projects?featured=true')
+                console.log('Response status:', response.status)
+                if (response.ok) {
+                    const data = await response.json()
+                    console.log('Featured projects data:', data)
+                    console.log('Projects array:', data.projects)
+                    console.log('Projects length:', data.projects?.length)
+                    setProjects(data.projects || [])
+                } else {
+                    console.error('Failed to fetch featured projects, status:', response.status)
+                }
+            } catch (error) {
+                console.error('Failed to fetch featured projects:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchFeaturedProjects()
+    }, [])
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -51,171 +57,114 @@ export function ProjectsSection() {
         return () => observer.disconnect()
     }, [])
 
+    // Don't show section if no featured projects after loading completes
+    if (!loading && projects.length === 0) {
+        console.log('No featured projects - hiding section')
+        return null
+    }
+
+    // Map colors for visual variety
+    const colors = ["#8B5CF6", "#A3E635", "#8B5CF6"]
+
     return (
         <section
             ref={sectionRef}
-            id="projects"
-            className="relative py-24 md:py-32 overflow-hidden"
-            style={{ backgroundColor: "#0d0d0d" }}
+            className="w-full py-20 md:py-32 bg-black"
         >
-            {/* Background accent */}
-            <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-[0.03] blur-[120px]"
-                style={{ background: "#8B5CF6" }}
-            />
-
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Section header */}
-                <div
-                    className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                        }`}
-                >
-                    <span className="text-xs font-mono tracking-[0.3em] uppercase" style={{ color: "#8B5CF6" }}>
+            <div className="container mx-auto px-6 max-w-7xl">
+                {/* Section header - Always visible */}
+                <div className="mb-16">
+                    <span className="text-xs font-mono tracking-[0.3em] uppercase text-violet-400 block mb-4">
                         Featured Work
                     </span>
-                    <h2 className="mt-3 text-3xl md:text-5xl font-bold tracking-tight" style={{ color: "#f2f2f2" }}>
-                        Systems I{"'ve"}{" "}
-                        <span
-                            style={{
-                                background: "linear-gradient(135deg, #8B5CF6, #A3E635)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                            }}
-                        >
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+                        Systems I've{" "}
+                        <span className="bg-gradient-to-r from-violet-400 to-lime-400 bg-clip-text text-transparent">
                             Designed & Built
                         </span>
                     </h2>
                 </div>
 
+                {/* Loading state */}
+                {loading && (
+                    <div className="text-center py-12">
+                        <div className="inline-flex items-center gap-3">
+                            <div className="w-5 h-5 border-2 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
+                            <span className="text-white/70">Loading featured projects...</span>
+                        </div>
+                    </div>
+                )}
+
                 {/* Projects list */}
-                <div className="flex flex-col gap-8">
-                    {projects.map((project, i) => (
-                        <ProjectCard
-                            key={project.title}
-                            project={project}
-                            index={i}
-                            isVisible={isVisible}
-                        />
-                    ))}
-                </div>
+                {!loading && projects.length > 0 && (
+                    <div className="space-y-8">
+                        {projects.map((project, i) => (
+                            <Link
+                                key={project._id}
+                                href={`/work/${project.slug}`}
+                                className="block group"
+                            >
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-violet-400/30 transition-all duration-300">
+                                    {/* Image */}
+                                    <div className="relative h-64 lg:h-80 rounded-lg overflow-hidden bg-gray-800">
+                                        {project.thumbnailUrl && (
+                                            <Image
+                                                src={project.thumbnailUrl}
+                                                alt={project.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                            />
+                                        )}
+                                        <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 border border-violet-400/50 rounded text-xs font-mono text-violet-400">
+                                            {String(i + 1).padStart(2, '0')}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex flex-col justify-center gap-4">
+                                        <div>
+                                            <span className="text-xs font-mono tracking-widest uppercase text-violet-400">
+                                                {project.category}
+                                            </span>
+                                            <h3 className="mt-2 text-2xl md:text-3xl font-bold text-white">
+                                                {project.title}
+                                            </h3>
+                                        </div>
+
+                                        <div
+                                            className="text-sm md:text-base leading-relaxed text-white/60 line-clamp-3"
+                                            dangerouslySetInnerHTML={{ __html: project.description }}
+                                        />
+
+                                        {/* Tags */}
+                                        {project.tools && project.tools.length > 0 && (
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.tools.slice(0, 4).map((tool) => (
+                                                    <span
+                                                        key={tool}
+                                                        className="px-3 py-1 rounded text-xs font-mono bg-white/5 border border-white/10 text-white/70"
+                                                    >
+                                                        {tool}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {/* CTA */}
+                                        <div className="mt-2">
+                                            <span className="inline-flex items-center gap-2 text-sm font-mono font-semibold text-violet-400 group-hover:gap-3 transition-all">
+                                                View Details
+                                                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
-    )
-}
-
-function ProjectCard({
-    project,
-    index,
-    isVisible,
-}: {
-    project: (typeof projects)[number]
-    index: number
-    isVisible: boolean
-}) {
-    const [hovered, setHovered] = useState(false)
-
-    return (
-        <div
-            className="group relative grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 md:p-8 rounded-xl transition-all duration-500"
-            style={{
-                backgroundColor: hovered ? `${project.color}06` : "rgba(255,255,255,0.02)",
-                border: `1px solid ${hovered ? `${project.color}30` : "rgba(139,92,246,0.08)"}`,
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(40px)",
-                transitionDelay: `${index * 150}ms`,
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            {/* Image */}
-            <div
-                className="relative h-56 md:h-72 rounded-lg overflow-hidden"
-                style={{
-                    order: index % 2 === 0 ? 0 : 1,
-                }}
-            >
-                <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                {/* Overlay */}
-                <div
-                    className="absolute inset-0 transition-opacity duration-500"
-                    style={{
-                        background: `linear-gradient(135deg, ${project.color}20, transparent 60%)`,
-                        opacity: hovered ? 1 : 0.5,
-                    }}
-                />
-                {/* Index badge */}
-                <div
-                    className="absolute top-4 left-4 px-3 py-1 rounded text-xs font-mono font-bold"
-                    style={{
-                        backgroundColor: "rgba(17,17,17,0.8)",
-                        color: project.color,
-                        border: `1px solid ${project.color}40`,
-                        backdropFilter: "blur(8px)",
-                    }}
-                >
-                    {project.index}
-                </div>
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col justify-center gap-4" style={{ order: index % 2 === 0 ? 1 : 0 }}>
-                <div>
-                    <span
-                        className="text-xs font-mono tracking-widest uppercase"
-                        style={{ color: project.color }}
-                    >
-                        {project.subtitle}
-                    </span>
-                    <h3
-                        className="mt-2 text-2xl md:text-3xl font-bold tracking-tight"
-                        style={{ color: "#f2f2f2" }}
-                    >
-                        {project.title}
-                    </h3>
-                </div>
-
-                <p
-                    className="text-sm md:text-base leading-relaxed"
-                    style={{ color: "rgba(255,255,255,0.5)" }}
-                >
-                    {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-2">
-                    {project.tags.map((tag) => (
-                        <span
-                            key={tag}
-                            className="px-3 py-1 rounded text-xs font-mono"
-                            style={{
-                                backgroundColor: `${project.color}0A`,
-                                border: `1px solid ${project.color}20`,
-                                color: "rgba(255,255,255,0.5)",
-                            }}
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-
-                {/* CTA */}
-                <div className="mt-2">
-                    <span
-                        data-cursor-hover
-                        className="inline-flex items-center gap-2 text-sm font-mono font-semibold tracking-wider transition-all duration-300 group-hover:gap-3"
-                        style={{ color: project.color }}
-                    >
-                        View Details
-                        <span className="transition-transform duration-300 group-hover:translate-x-1">{"-->"}</span>
-                    </span>
-                </div>
-            </div>
-        </div>
     )
 }

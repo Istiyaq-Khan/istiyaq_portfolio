@@ -161,7 +161,7 @@ export function HeroSection() {
                 }`}
             >
               <a
-                href="#projects"
+                href="/work"
                 data-cursor-hover
                 className="group relative px-7 py-3.5 font-mono text-sm font-semibold tracking-wider uppercase rounded overflow-hidden transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: "#8B5CF6", color: "#fff" }}

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import WorkGallery from '@/components/WorkGallery';
+import { FeaturedProjectsSection } from '@/components/featured-projects-section';
 import { Metadata } from 'next';
 import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
@@ -40,15 +41,20 @@ export default async function WorkPage() {
     const projects = await getProjects();
 
     return (
-        <div className="container mx-auto px-6 py-12">
-            <div className="mb-12">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">Selected Work</h1>
-                <p className="text-foreground/70 max-w-2xl text-lg">
-                    A collection of edits, animations, and systems designed to drive engagement.
-                </p>
-            </div>
+        <>
+            {/* Featured projects section at the top */}
+            <FeaturedProjectsSection />
 
-            <WorkGallery initialProjects={projects} />
-        </div>
+            <div className="container mx-auto px-6 py-12">
+                <div className="mb-12">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6">All Projects</h1>
+                    <p className="text-foreground/70 max-w-2xl text-lg">
+                        A collection of edits, animations, and systems designed to drive engagement.
+                    </p>
+                </div>
+
+                <WorkGallery initialProjects={projects} />
+            </div>
+        </>
     );
 }

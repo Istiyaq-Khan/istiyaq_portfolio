@@ -32,7 +32,6 @@ export default function Page() {
           <ProjectsSection />
           <ContactSection />
         </main>
-        <Footer />
       </div>
     </>
   )

@@ -36,8 +36,17 @@ export async function GET(req: Request) {
     }
 
     try {
-        const projects = await Project.find({}).sort({ createdAt: -1 });
-        return NextResponse.json({ success: true, data: projects });
+        // Build query filter
+        const filter: any = {};
+
+        // Check for featured filter
+        const featuredParam = searchParams.get('featured');
+        if (featuredParam === 'true') {
+            filter.featured = true;
+        }
+
+        const projects = await Project.find(filter).sort({ createdAt: -1 });
+        return NextResponse.json({ success: true, projects: projects, data: projects });
     } catch (error) {
         return NextResponse.json({ success: false, error: 'Failed to fetch projects' }, { status: 500 });
     }
