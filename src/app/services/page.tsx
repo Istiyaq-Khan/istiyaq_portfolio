@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Services | Video Editing, AI Automation & Workflow Systems',
         description: 'Professional video editing, motion graphics, and AI-powered content automation systems.',
-        url: 'https://istiyaq.vercel.app/services',
+        url: 'https://istiyaq.com/services',
         type: 'website',
     },
     alternates: {

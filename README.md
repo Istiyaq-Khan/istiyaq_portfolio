@@ -22,7 +22,7 @@ My mission is to **solve efficiency problems for creators**. I bridge the gap be
 -   [YouTube](https://www.youtube.com/@istiyaq-khan10)
 -   [Instagram](https://www.instagram.com/ist.iyaqkhan)
 -   [Twitter](https://x.com/istiyaqkhanr)
--   [Portfolio](https://istiyaq.vercel.app)
+-   [Portfolio](https://istiyaq.com)
 
 ---
 

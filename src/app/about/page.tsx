@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'About Istiyaq Khan Razin | AI Workflow Engineer & IKK Studio Founder',
         description: 'Sylhet-based creative technologist bridging video editing and AI automation. Founder of IKK Studio.',
-        url: 'https://istiyaq.vercel.app/about',
+        url: 'https://istiyaq.com/about',
         type: 'profile',
     },
     alternates: {
@@ -33,7 +33,7 @@ export default function AboutPage() {
         '@type': 'Person',
         name: 'Istiyaq Khan Razin',
         jobTitle: 'Founder & Automation Engineer',
-        url: 'https://istiyaq.vercel.app/about',
+        url: 'https://istiyaq.com/about',
         sameAs: [
             'https://github.com/Istiyaq-Khan',
             'https://www.linkedin.com/in/istiyaq-khan',

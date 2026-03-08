@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Portfolio | Video Editing & Automation Projects',
         description: 'Browse my portfolio of video editing, motion graphics, and AI automation projects.',
-        url: 'https://istiyaq.vercel.app/work',
+        url: 'https://istiyaq.com/work',
         type: 'website',
     },
     alternates: {

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://istiyaq.vercel.app"),
+  metadataBase: new URL("https://istiyaq.com"),
   title: {
     default: "Istiyaq Khan Razin | AI Workflow Engineer & Founder of IKK Studio",
     template: "%s | Istiyaq Khan",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "Sylhet-based AI Workflow Engineer and creative technologist. Founder of IKK Studio helping YouTubers and creators scale content with Python, n8n, and AI automation. Specializing in video editing, motion graphics, and content pipelines.",
   applicationName: "Istiyaq Khan Portfolio",
-  authors: [{ name: "Istiyaq Khan Razin", url: "https://istiyaq.vercel.app" }],
+  authors: [{ name: "Istiyaq Khan Razin", url: "https://istiyaq.com" }],
   generator: "Next.js",
   keywords: [
     // Personal branding
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     title: "Istiyaq Khan Razin | AI Workflow Engineer & Founder of IKK Studio",
     description:
       "Sylhet-based AI Workflow Engineer and creative technologist. Founder of IKK Studio helping YouTubers and creators scale content with Python, n8n, and AI automation.",
-    url: "https://istiyaq.vercel.app",
+    url: "https://istiyaq.com",
     siteName: "Istiyaq Khan", // Crucial for Google to display the correct name
     images: [
       {
@@ -133,15 +133,15 @@ const jsonLd = {
   alternateName: ["Istiyaq Khan", "IKK"],
   jobTitle: "AI Workflow Engineer & Founder",
   description: "A Sylhet-based professional positioning himself at the intersection of creative media and technical automation. Founder of IKK Studio, specializing in AI workflow systems for content creators.",
-  image: "https://istiyaq.vercel.app/Istiyaq-Khan-Razin.png",
-  url: "https://istiyaq.vercel.app",
+  image: "https://istiyaq.com/Istiyaq-Khan-Razin.png",
+  url: "https://istiyaq.com",
   sameAs: [
     "https://github.com/Istiyaq-Khan",
     "https://www.linkedin.com/in/istiyaq-khan",
     "https://x.com/istiyaqkhanr",
     "https://www.youtube.com/@istiyaq-khan10",
     "https://www.instagram.com/ist.iyaqkhan",
-    "https://istiyaq-blog.vercel.app",
+    "https://blog.istiyaq.com",
     "https://devpost.com/Istiyaq-Khan"
   ],
   worksFor: {
@@ -149,7 +149,7 @@ const jsonLd = {
     name: "IKK Studio",
     foundingDate: "2025-12",
     description: "AI Workflow & Content Systems",
-    url: "https://istiyaq.vercel.app",
+    url: "https://istiyaq.com",
   },
   knowsAbout: [
     "Video Editing",
@@ -173,7 +173,7 @@ const jsonLd = {
     addressLocality: "Sylhet",
     addressCountry: "Bangladesh"
   },
-  email: "razinkhan3245@gmail.com",
+  email: "hello@istiyaq.com",
 };
 
 export default function RootLayout({

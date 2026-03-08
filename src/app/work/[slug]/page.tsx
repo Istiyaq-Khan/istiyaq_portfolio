@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             title,
             description,
             type: 'article',
-            url: `https://istiyaq.vercel.app/work/${slug}`,
+            url: `https://istiyaq.com/work/${slug}`,
             images: [
                 {
                     url: project.thumbnailUrl,

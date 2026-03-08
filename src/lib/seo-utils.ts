@@ -95,7 +95,7 @@ export function extractKeywords(text: string, maxKeywords: number = 10): string[
  * @param baseUrl - Base URL of the site
  * @returns Full canonical URL
  */
-export function generateCanonicalUrl(path: string, baseUrl: string = 'https://istiyaq.vercel.app'): string {
+export function generateCanonicalUrl(path: string, baseUrl: string = 'https://istiyaq.com'): string {
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
     return `${baseUrl}${cleanPath}`;
 }

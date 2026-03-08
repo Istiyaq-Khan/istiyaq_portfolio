@@ -3,7 +3,7 @@ import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://istiyaq.vercel.app';
+    const baseUrl = 'https://istiyaq.com';
 
     // Fetch all projects from database
     await connectToDatabase();
