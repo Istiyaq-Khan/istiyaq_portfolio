@@ -1,4 +1,4 @@
-"use client"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -17,6 +17,14 @@ export function Footer() {
             <span className="opacity-30">.</span>
             <span className="ml-2 text-xs">Istiyaq Khan Razin</span>
           </span>
+
+          {/* Navigation */}
+          <nav className="flex items-center gap-4 text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <Link href="/about" className="hover:text-primary transition-colors">About</Link>
+            <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
+            <Link href="/work" className="hover:text-primary transition-colors">Work</Link>
+            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+          </nav>
 
           {/* Copyright */}
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
