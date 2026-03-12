@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { CursorProvider } from "../components/cursor-provider";
 
 const geistSans = Geist({
@@ -82,9 +83,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: "/",
-  },
+  alternates: {},
   openGraph: {
     title: "Istiyaq Khan Razin | AI Workflow Engineer & Founder of IKK Studio",
     description:
@@ -128,52 +127,34 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Istiyaq Khan Razin",
-  alternateName: ["Istiyaq Khan", "IKK"],
-  jobTitle: "AI Workflow Engineer & Founder",
-  description: "A Sylhet-based professional positioning himself at the intersection of creative media and technical automation. Founder of IKK Studio, specializing in AI workflow systems for content creators.",
-  image: "https://istiyaq.com/Istiyaq-Khan-Razin.png",
+  "@type": "Organization",
+  name: "IKK Studio",
   url: "https://istiyaq.com",
+  logo: "https://istiyaq.com/Istiyaq-Khan-Razin.png",
+  description: "AI Workflow & Content Systems by Istiyaq Khan Razin. specialized in AI workflow systems for content creators.",
   sameAs: [
     "https://github.com/Istiyaq-Khan",
     "https://www.linkedin.com/in/istiyaq-khan",
     "https://x.com/istiyaqkhanr",
     "https://www.youtube.com/@istiyaq-khan10",
     "https://www.instagram.com/ist.iyaqkhan",
-    "https://blog.istiyaq.com",
-    "https://devpost.com/Istiyaq-Khan"
+    "https://blog.istiyaq.com"
   ],
-  worksFor: {
-    "@type": "Organization",
-    name: "IKK Studio",
-    foundingDate: "2025-12",
-    description: "AI Workflow & Content Systems",
-    url: "https://istiyaq.com",
+  founder: {
+    "@type": "Person",
+    name: "Istiyaq Khan Razin"
   },
-  knowsAbout: [
-    "Video Editing",
-    "Motion Graphics",
-    "Python Programming",
-    "n8n Automation",
-    "Generative AI",
-    "YouTube Growth",
-    "Content SEO",
-    "Marketing Automation",
-    "Adobe After Effects",
-    "Adobe Premiere Pro",
-    "DaVinci Resolve",
-  ],
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "Scholars Home, Sylhet"
-  },
+  foundingDate: "2025-12",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Sylhet",
     addressCountry: "Bangladesh"
   },
-  email: "hello@istiyaq.com",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@istiyaq.com",
+    contactType: "customer service"
+  }
 };
 
 export default function RootLayout({
@@ -187,6 +168,7 @@ export default function RootLayout({
         <CursorProvider />
         <Navbar />
         <main className="min-h-screen pt-20">
+          <Breadcrumbs />
           {children}
         </main>
         <Footer />

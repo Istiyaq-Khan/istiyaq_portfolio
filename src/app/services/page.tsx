@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: '/services',
+        canonical: 'https://istiyaq.com/services',
     },
 };
 

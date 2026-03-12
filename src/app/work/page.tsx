@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: '/work',
+        canonical: 'https://istiyaq.com/work',
     },
 };
 
