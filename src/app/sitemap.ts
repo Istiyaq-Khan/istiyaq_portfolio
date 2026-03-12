@@ -51,5 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
+    // Explicitly excluding /blog dynamically by not fetching blogs here
+
     return [...staticPages, ...projectPages];
 }
