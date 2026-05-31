@@ -1,68 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  /* The Creative Glitch Palette */
-  --bg-main: #111111;
-  /* Matte Black */
-  --foreground: #ededed;
-  /* Off-white Body Text */
-
-  --accent-primary: #8B5CF6;
-  /* Neon Purple (Links, Focus, Icons) */
-  --accent-cta: #A3E635;
-  /* Acid Green (Buttons, Actions) */
-
-  /* Semantic Mappings */
-  --card-bg: #1A1A1A;
-  --border: #333333;
+  /* Matte Black - Main background */
+  --color-bg-primary: #111111;
+  /* Neon Purple - Primary active/interactive */
+  --color-accent-primary: #8B5CF6;
+  /* Acid Green - Energetic highlights */
+  --color-accent-secondary: #A3E635;
+  /* Off-White - Headings and high-contrast body */
+  --color-text-primary: #F8FAFC;
+  /* Slate Gray - Subtitles, metadata */
+  --color-text-secondary: #94A3B8;
+  /* Dark Gray - Borders */
+  --color-border: #333333;
 }
 
 @theme inline {
-  --color-background: var(--bg-main);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+  
+  --color-primary: var(--color-accent-primary);
+  --color-secondary: var(--color-accent-secondary);
+  --color-border: var(--color-border);
+  --color-text-secondary: var(--color-text-secondary);
 
-  /* Tailwind Colors */
-  --color-primary: var(--accent-primary);
-  /* Purple */
-  --color-cta: var(--accent-cta);
-  /* Green */
-  --color-card: var(--card-bg);
-  --color-border: var(--border);
-
-  /* Font Families with Fallbacks */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
-
-  /* Typography Settings */
-  --tracking-tight: -0.015em;
+  /* Fonts injected by layout.tsx */
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
 }
 
 body {
-  background-color: var(--bg-main);
-  color: var(--foreground);
-  font-family: inherit;
-  letter-spacing: var(--tracking-tight);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   overflow-x: hidden;
 }
 
-/* Ensure all elements inherit the font */
-*,
-::before,
-::after {
-  font-family: inherit;
+/* Headings Configuration */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em; /* Tighter engineered look */
+  color: var(--color-text-primary);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-sans);
-  letter-spacing: -0.02em;
-  /* Tight tracking for headings */
+/* Technical text styling */
+code, pre, .tag {
+  font-family: var(--font-mono);
 }
+
+/* Utility to add subtle purple glow per DESIGN.md */
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}

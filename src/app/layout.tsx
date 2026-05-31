@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Breadcrumbs } from "../components/Breadcrumbs";
+import { GsapProvider } from "../components/GsapProvider";
 import { CursorProvider } from "../components/cursor-provider";
 import { Analytics } from "@vercel/analytics/next"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
-  fallback: ["system-ui", "sans-serif"],
+  weight: ["600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  fallback: ["monospace"],
+  weight: ["400", "500"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -164,15 +172,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased cursor-none">
-        <CursorProvider />
-        <Navbar />
-        <main className="min-h-screen pt-20">
-          <Breadcrumbs />
-          {children}
-        </main>
-        <Footer />
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased cursor-none bg-background text-foreground font-body">
+        <GsapProvider>
+          <CursorProvider />
+          <Navbar />
+          <main className="min-h-screen pt-24 pb-16 px-6">
+            <Breadcrumbs />
+            {children}
+          </main>
+          <Footer />
+        </GsapProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
