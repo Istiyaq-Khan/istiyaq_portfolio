@@ -70,6 +70,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileOpen])
+
   return (
     <nav
       ref={navRef}
@@ -79,7 +91,7 @@ export function Navbar() {
           : "py-6 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <a
           href="/"
@@ -128,7 +140,7 @@ export function Navbar() {
         {/* Mobile menu toggle */}
         <button
           type="button"
-          className="md:hidden text-primary focus:outline-none"
+          className="md:hidden text-primary focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           data-cursor-hover
@@ -139,11 +151,11 @@ export function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-background/95 backdrop-blur-md border-b border-border ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-transparent"
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-[#111111]/95 backdrop-blur-md border-b border-border ${
+          mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 border-transparent"
         }`}
       >
-        <div className="px-8 py-6 flex flex-col gap-4">
+        <div className="px-4 py-6 flex flex-col gap-2">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -151,7 +163,7 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
               onMouseEnter={handleLinkMouseEnter}
               onMouseLeave={handleLinkMouseLeave}
-              className={`text-lg font-mono tracking-wider uppercase py-2 transition-colors duration-300 border-b border-border ${
+              className={`text-lg font-mono tracking-wider uppercase py-3 px-2 active:text-[#A3E635] transition-colors duration-300 border-b border-border ${
                 activeSection === link.href.replace("#", "")
                   ? "text-primary"
                   : "text-text-secondary"
@@ -163,7 +175,7 @@ export function Navbar() {
           <a
             href="/contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-4 px-6 py-3 text-center text-sm font-mono font-bold tracking-wider uppercase rounded-sm transition-all duration-300 bg-secondary text-background"
+            className="mt-4 px-6 py-4 text-center text-sm font-mono font-bold tracking-wider uppercase rounded-sm transition-all duration-300 bg-secondary text-background active:opacity-80"
           >
             Hire Me
           </a>

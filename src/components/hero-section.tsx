@@ -74,7 +74,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-6 py-16 lg:py-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Text content */}
           <div className="flex flex-col gap-6 lg:gap-8">
@@ -99,11 +99,11 @@ export function HeroSection() {
 
             {/* Heading */}
             <h1
-              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance transition-all duration-700 delay-100 ${isVisible
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight break-words transition-all duration-700 delay-100 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
                 }`}
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#f2f2f2", overflowWrap: "anywhere", minWidth: 0 }}
             >
               I Build{" "}
               <span
@@ -198,7 +198,7 @@ export function HeroSection() {
 
             {/* Social links */}
             <div
-              className={`flex items-center gap-3 mt-4 transition-all duration-700 delay-[400ms] ${isVisible
+              className={`flex flex-wrap items-center gap-3 mt-4 transition-all duration-700 delay-[400ms] ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
                 }`}
@@ -211,7 +211,7 @@ export function HeroSection() {
                   rel="noopener noreferrer"
                   data-cursor-hover
                   aria-label={link.label}
-                  className="flex items-center justify-center w-10 h-10 rounded-lg text-xs font-mono font-bold transition-all duration-300 hover:scale-110"
+                  className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg text-xs font-mono font-bold transition-all duration-300 hover:scale-110 active:scale-95"
                   style={{
                     border: "1px solid rgba(139,92,246,0.2)",
                     color: "rgba(255,255,255,0.5)",
@@ -253,7 +253,7 @@ export function HeroSection() {
 
               {/* Main image container */}
               <div
-                className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden"
+                className="relative w-full max-w-[288px] aspect-square sm:max-w-none sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden mx-auto"
                 style={{
                   border: "2px solid rgba(139,92,246,0.3)",
                   transform: `perspective(1000px) rotateX(${mousePos.y * -0.1}deg) rotateY(${mousePos.x * 0.1}deg)`,

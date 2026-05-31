@@ -34,12 +34,14 @@
 
 html {
   font-family: var(--font-body);
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  overflow-x: hidden;
+  overflow-x: clip;
+  min-width: 320px;
 }
 
 /* Headings Configuration */

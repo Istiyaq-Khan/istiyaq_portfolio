@@ -177,7 +177,7 @@ export default function RootLayout({
         <GsapProvider>
           <CursorProvider />
           <Navbar />
-          <main className="min-h-screen pt-24 pb-16 px-6">
+          <main className="min-h-screen pt-20 md:pt-24 pb-8 md:pb-16 px-4 md:px-6">
             <Breadcrumbs />
             {children}
           </main>
