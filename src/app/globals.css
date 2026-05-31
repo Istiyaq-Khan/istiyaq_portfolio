@@ -21,6 +21,8 @@
   
   --color-primary: var(--color-accent-primary);
   --color-secondary: var(--color-accent-secondary);
+  --color-cta: var(--color-accent-secondary);
+  --color-card-bg: #0a0a0a;
   --color-border: var(--color-border);
   --color-text-secondary: var(--color-text-secondary);
 

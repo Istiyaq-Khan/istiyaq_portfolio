@@ -7,7 +7,7 @@ import React from 'react';
 export function Breadcrumbs() {
   const pathname = usePathname();
 
-  if (pathname === '/') return null;
+  if (!pathname || pathname === '/' || pathname.startsWith('/admin')) return null;
 
   const segments = pathname.split('/').filter(p => p !== '');
   

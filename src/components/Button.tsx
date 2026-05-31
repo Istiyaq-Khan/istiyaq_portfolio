@@ -1,6 +1,11 @@
+"use client"
+
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -20,8 +25,43 @@ export default function Button({
     children,
     ...props
 }: ButtonProps) {
+    const buttonRef = useRef<any>(null);
+    const { contextSafe } = useGSAP({ scope: buttonRef });
+
+    const handleMouseEnter = contextSafe(() => {
+        if (variant === 'primary') {
+            gsap.to(buttonRef.current, {
+                filter: 'brightness(1.15)',
+                duration: 0.15,
+                ease: 'power2.out',
+            });
+            gsap.to('svg', {
+                x: 3,
+                duration: 0.15,
+                ease: 'power2.out',
+            });
+        }
+    });
+
+    const handleMouseLeave = contextSafe(() => {
+        if (variant === 'primary') {
+            gsap.to(buttonRef.current, {
+                filter: 'brightness(1)',
+                duration: 0.15,
+                ease: 'power2.out',
+                clearProps: 'filter',
+            });
+            gsap.to('svg', {
+                x: 0,
+                duration: 0.15,
+                ease: 'power2.out',
+                clearProps: 'x',
+            });
+        }
+    });
+
     const variants = {
-        primary: 'bg-cta text-black font-bold hover:opacity-90 shadow-[0_0_15px_rgba(163,230,53,0.3)] hover:shadow-[0_0_25px_rgba(163,230,53,0.5)] border border-transparent', // Acid Green
+        primary: 'bg-cta text-black font-bold shadow-[0_0_15px_rgba(163,230,53,0.3)] border border-transparent', // Acid Green
         secondary: 'bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20', // Purple Tint
         outline: 'border border-border text-foreground hover:border-primary hover:text-primary bg-transparent',
         ghost: 'text-foreground/70 hover:text-primary hover:bg-white/5',
@@ -40,14 +80,18 @@ export default function Button({
     if (href) {
         return (
             <Link href={href} className={styles} passHref>
-                {children}
+                <span ref={buttonRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="inline-flex w-full h-full items-center justify-center gap-2">
+                    {children}
+                </span>
             </Link>
         );
     }
 
     return (
-        <button className={styles} {...props}>
-            {children}
+        <button ref={buttonRef} className={styles} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} {...props}>
+            <span className="inline-flex items-center justify-center gap-2 pointer-events-none">
+                {children}
+            </span>
         </button>
     );
 }

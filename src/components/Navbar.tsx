@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { Menu, X } from "lucide-react"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
+import { usePathname } from "next/navigation"
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -13,12 +14,16 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/admin')) return null;
+
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
   const navRef = useRef<HTMLElement>(null)
 
-  useGSAP(() => {
+  const { contextSafe } = useGSAP(() => {
     gsap.from(navRef.current, {
       y: -50,
       opacity: 0,
@@ -26,6 +31,23 @@ export function Navbar() {
       ease: "power2.out",
     });
   }, { scope: navRef });
+
+  const handleLinkMouseEnter = contextSafe((e: React.MouseEvent<HTMLAnchorElement>) => {
+    gsap.to(e.currentTarget, {
+      color: '#A3E635',
+      duration: 0.15,
+      ease: 'power2.out'
+    });
+  });
+
+  const handleLinkMouseLeave = contextSafe((e: React.MouseEvent<HTMLAnchorElement>) => {
+    gsap.to(e.currentTarget, {
+      color: '',
+      duration: 0.15,
+      ease: 'power2.out',
+      clearProps: 'color'
+    });
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,10 +102,12 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               data-cursor-hover
+              onMouseEnter={handleLinkMouseEnter}
+              onMouseLeave={handleLinkMouseLeave}
               className={`relative py-1 text-sm font-mono tracking-wider uppercase transition-colors duration-300 ${
                 activeSection === link.href.replace("#", "")
                   ? "text-primary"
-                  : "text-text-secondary hover:text-primary"
+                  : "text-text-secondary"
               }`}
             >
               {link.name}
@@ -125,10 +149,12 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
+              onMouseEnter={handleLinkMouseEnter}
+              onMouseLeave={handleLinkMouseLeave}
               className={`text-lg font-mono tracking-wider uppercase py-2 transition-colors duration-300 border-b border-border ${
                 activeSection === link.href.replace("#", "")
                   ? "text-primary"
-                  : "text-text-secondary hover:text-primary"
+                  : "text-text-secondary"
               }`}
             >
               {link.name}
@@ -146,3 +172,4 @@ export function Navbar() {
     </nav>
   )
 }
+
