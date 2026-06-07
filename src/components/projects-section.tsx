@@ -15,36 +15,9 @@ interface Project {
     featured: boolean;
 }
 
-export function ProjectsSection() {
+export function ProjectsSection({ projects = [] }: { projects?: Project[] }) {
     const sectionRef = useRef<HTMLElement>(null)
     const [isVisible, setIsVisible] = useState(false)
-    const [projects, setProjects] = useState<Project[]>([])
-    const [loading, setLoading] = useState(true)
-
-    // Fetch featured projects from API
-    useEffect(() => {
-        async function fetchFeaturedProjects() {
-            try {
-                console.log('Fetching featured projects...')
-                const response = await fetch('/api/projects?featured=true')
-                console.log('Response status:', response.status)
-                if (response.ok) {
-                    const data = await response.json()
-                    console.log('Featured projects data:', data)
-                    console.log('Projects array:', data.projects)
-                    console.log('Projects length:', data.projects?.length)
-                    setProjects(data.projects || [])
-                } else {
-                    console.error('Failed to fetch featured projects, status:', response.status)
-                }
-            } catch (error) {
-                console.error('Failed to fetch featured projects:', error)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchFeaturedProjects()
-    }, [])
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -57,9 +30,8 @@ export function ProjectsSection() {
         return () => observer.disconnect()
     }, [])
 
-    // Don't show section if no featured projects after loading completes
-    if (!loading && projects.length === 0) {
-        console.log('No featured projects - hiding section')
+    // Don't show section if no featured projects
+    if (projects.length === 0) {
         return null
     }
 
@@ -85,18 +57,8 @@ export function ProjectsSection() {
                     </h2>
                 </div>
 
-                {/* Loading state */}
-                {loading && (
-                    <div className="text-center py-12">
-                        <div className="inline-flex items-center gap-3">
-                            <div className="w-5 h-5 border-2 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
-                            <span className="text-white/70">Loading featured projects...</span>
-                        </div>
-                    </div>
-                )}
-
                 {/* Projects list */}
-                {!loading && projects.length > 0 && (
+                {projects.length > 0 && (
                     <div className="space-y-8">
                         {projects.map((project, i) => (
                             <Link

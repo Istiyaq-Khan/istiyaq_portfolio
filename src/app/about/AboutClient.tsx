@@ -90,7 +90,7 @@ export default function AboutClient() {
             {/* Hero / Intro */}
             <section className="mb-24 flex flex-col md:flex-row gap-12 items-center">
                 <div className="w-full md:w-1/2 hero-img">
-                    <div className="aspect-[4/5] bg-card-bg border border-border rounded-xl overflow-hidden relative group">
+                    <div suppressHydrationWarning className="aspect-[4/5] bg-card-bg border border-border rounded-xl overflow-hidden relative group">
                         <Image
                             src="/Istiyaq-Khan-Razin.png"
                             alt="Istiyaq Khan Razin - Creative Technologist"

@@ -5,6 +5,7 @@ import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
 import { Metadata } from 'next';
 import { truncateDescription } from '@/lib/seo-utils';
+import { cache } from 'react';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -26,12 +27,15 @@ interface IProject {
     slug: string;
 }
 
+const getProjectBySlug = cache(async (slug: string) => {
+    await connectToDatabase();
+    return await Project.findOne({ slug }).lean() as unknown as IProject | null;
+});
+
 // Generate dynamic metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
-
-    await connectToDatabase();
-    const project = await Project.findOne({ slug }).lean() as unknown as IProject;
+    const project = await getProjectBySlug(slug);
 
     if (!project) {
         return {
@@ -83,10 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
     const { slug } = await params;
-
-    // DB Call
-    await connectToDatabase();
-    const project = await Project.findOne({ slug }).lean() as unknown as IProject;
+    const project = await getProjectBySlug(slug);
 
     if (!project) {
         return (
@@ -97,8 +98,27 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         );
     }
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": project.title,
+        "description": project.metaDescription || truncateDescription(project.description, 160),
+        "url": `https://istiyaq.com/work/${project.slug}`,
+        "image": project.thumbnailUrl,
+        "creator": {
+            "@type": "Person",
+            "name": "Istiyaq Khan Razin"
+        },
+        "genre": project.category,
+        "keywords": project.keywords?.join(", ") || project.tools?.join(", ")
+    };
+
     return (
         <div className="container mx-auto px-6 py-12">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Link href="/work" className="inline-flex items-center text-sm text-foreground/60 hover:text-primary mb-8 transition-colors">
                 <ArrowLeft size={16} className="mr-2" /> Back to Work
             </Link>

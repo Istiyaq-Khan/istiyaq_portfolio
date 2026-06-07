@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Card from '@/components/Card';
 import { PlayCircle } from 'lucide-react';
 
@@ -58,11 +59,12 @@ export default function WorkGallery({ initialProjects }: WorkGalleryProps) {
                             <Card hoverEffect className="group cursor-pointer overflow-hidden h-full">
                                 {/* Thumbnail Container */}
                                 <div className="relative aspect-video rounded-lg overflow-hidden bg-white/10 mb-4">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                    <Image
                                         src={project.thumbnailUrl || '/placeholder.jpg'}
                                         alt={project.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                         <PlayCircle size={48} className="text-cta" />

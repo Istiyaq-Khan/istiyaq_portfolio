@@ -92,7 +92,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {},
+  alternates: {
+    canonical: './',
+  },
   openGraph: {
     title: "Istiyaq Khan Razin | AI Workflow Engineer & Founder of IKK Studio",
     description:
@@ -172,8 +174,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="antialiased cursor-none bg-background text-foreground font-body">
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body suppressHydrationWarning className="antialiased cursor-none bg-background text-foreground font-body">
         <GsapProvider>
           <CursorProvider />
           <Navbar />

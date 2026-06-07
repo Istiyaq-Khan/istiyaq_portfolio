@@ -1,15 +1,13 @@
-"use client"
 import type { Metadata } from "next"
 
-import { useState, useCallback } from "react"
-import { LoadingScreen } from "../components/loading-screen"
-import { Navbar } from "../components/Navbar"
+import { PageTransitionWrapper } from "../components/PageTransitionWrapper"
 import { HeroSection } from "../components/hero-section"
 import { AboutSection } from "../components/about-section"
 import { SkillsSection } from "../components/skills-section"
 import { ProjectsSection } from "../components/projects-section"
 import { ContactSection } from "../components/contact-section"
-import { Footer } from "../components/Footer"
+import connectToDatabase from "@/lib/db"
+import Project from "@/models/Project"
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -48,12 +46,16 @@ const personJsonLd = {
   email: "hello@istiyaq.com"
 };
 
-export default function Page() {
-  const [isLoaded, setIsLoaded] = useState(false)
+export const revalidate = 60;
 
-  const handleLoadComplete = useCallback(() => {
-    setIsLoaded(true)
-  }, [])
+async function getFeaturedProjects() {
+    await connectToDatabase();
+    const projects = await Project.find({ featured: true }).sort({ createdAt: -1 }).lean();
+    return projects.map((p: any) => ({ ...p, _id: p._id.toString() }));
+}
+
+export default async function Page() {
+  const featuredProjects = await getFeaturedProjects();
 
   return (
     <>
@@ -61,20 +63,13 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      {!isLoaded && <LoadingScreen onComplete={handleLoadComplete} />}
-      <div
-        className={`transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-      >
-        <Navbar />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
-        </main>
-      </div>
+      <PageTransitionWrapper>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection projects={featuredProjects} />
+        <ContactSection />
+      </PageTransitionWrapper>
     </>
   )
 }

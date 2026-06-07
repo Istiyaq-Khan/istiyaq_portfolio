@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import WorkGallery from '@/components/WorkGallery';
-import { FeaturedProjectsSection } from '@/components/featured-projects-section';
+import { ProjectsSection } from '@/components/projects-section';
 import { Metadata } from 'next';
 import connectToDatabase from '@/lib/db';
 import Project from '@/models/Project';
@@ -39,11 +39,12 @@ async function getProjects() {
 
 export default async function WorkPage() {
     const projects = await getProjects();
+    const featuredProjects = projects.filter((p: any) => p.featured);
 
     return (
         <>
             {/* Featured projects section at the top */}
-            <FeaturedProjectsSection />
+            <ProjectsSection projects={featuredProjects} />
 
             <div className="container mx-auto px-6 py-12">
                 <div className="mb-12">
